@@ -1,7 +1,8 @@
-package com.example.twitterclonemvvm
+package com.example.twitterclonemvvm.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.twitterclonemvvm.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
