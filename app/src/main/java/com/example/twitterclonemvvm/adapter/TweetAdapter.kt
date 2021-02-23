@@ -3,11 +3,14 @@ package com.example.twitterclonemvvm.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.twitterclonemvvm.R
 import com.example.twitterclonemvvm.databinding.ItemTweetBinding
+import com.example.twitterclonemvvm.model.Tweet
 
-class TweetAdapter : RecyclerView.Adapter<TweetAdapter.TweetViewHolder>() {
+class TweetAdapter(val tweetList: ArrayList<Tweet>) : RecyclerView.Adapter<TweetAdapter.TweetViewHolder>() {
 
     class TweetViewHolder(var view: ItemTweetBinding): RecyclerView.ViewHolder(view.root)
 
@@ -19,10 +22,17 @@ class TweetAdapter : RecyclerView.Adapter<TweetAdapter.TweetViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TweetViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.view.tweet = tweetList[position]
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return tweetList.size
+    }
+
+    fun updateTweetList(newTweetList: List<Tweet>) {
+        tweetList.clear()
+        tweetList.addAll(newTweetList)
+
+        notifyDataSetChanged()
     }
 }

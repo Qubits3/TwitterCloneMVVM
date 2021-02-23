@@ -17,7 +17,7 @@
             android:id="@+id/item_username_textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="username"
+            android:text="@{tweet.userUID}"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
@@ -28,7 +28,7 @@
             android:layout_marginTop="5dp"
             android:paddingStart="5dp"
             android:paddingEnd="5dp"
-            android:text="Tweet"
+            android:text="@{tweet.text}"
             android:textSize="20sp" />
 
     </LinearLayout>

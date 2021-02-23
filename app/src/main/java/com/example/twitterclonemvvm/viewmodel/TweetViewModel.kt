@@ -15,17 +15,17 @@ class TweetViewModel(application: Application) : BaseViewModel(application) {
     private val disposable = CompositeDisposable()
     private val tweetAPIService = TweetAPIService()
 
-    fun tweet(userUID: String?) {
+    fun sendTweet(userUID: String?) {
 
         val tweet = Tweet("id", "text", "DG46DFHG4F6HGF4H", "4684+846486")
 
         disposable.add(
-            tweetAPIService.tweet(tweet, userUID)
+            tweetAPIService.sendTweet(tweet, userUID)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<JsonObject>() {
                     override fun onSuccess(t: JsonObject) {
-                        "OnSuccess".print()
+                        "TweetViewModel.OnSuccess()".print()
                     }
 
                     override fun onError(e: Throwable) {

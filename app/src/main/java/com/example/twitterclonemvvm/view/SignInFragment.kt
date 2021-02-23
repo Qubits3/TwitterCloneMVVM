@@ -5,21 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.twitterclonemvvm.R
+import com.example.twitterclonemvvm.databinding.FragmentSignInBinding
 import com.example.twitterclonemvvm.viewmodel.SignInViewModel
 
 class SignInFragment : Fragment() {
 
     private lateinit var viewModel: SignInViewModel
+    private lateinit var dataBinding: FragmentSignInBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
+
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -27,7 +31,12 @@ class SignInFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
 
-        findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToFeedFragment())
+
+        dataBinding.signInTextView.setOnClickListener {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
+        }
+
+//        findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToFeedFragment())
 
     }
 }

@@ -5,20 +5,28 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.twitterclonemvvm.R
+import com.example.twitterclonemvvm.databinding.FragmentTweetBinding
 import com.example.twitterclonemvvm.viewmodel.TweetViewModel
 
 class TweetFragment : Fragment() {
 
     private lateinit var viewModel: TweetViewModel
+    private lateinit var dataBinding: FragmentTweetBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tweet, container, false)
+    ): View {
+        dataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_tweet, container, false)
+
+        dataBinding.tweetButton.setOnClickListener {
+            viewModel.sendTweet("dfsdsfdsfsdf")
+        }
+
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,7 +34,8 @@ class TweetFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(TweetViewModel::class.java)
 
-        viewModel.tweet("(userUID)DG468GS84FA6HGF4A")
+//        viewModel.sendTweet("(userUID)DG468GS84FA6HGF4A")
 
     }
+
 }
