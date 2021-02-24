@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.twitterclonemvvm.R
 import com.example.twitterclonemvvm.databinding.FragmentSignInBinding
+import com.example.twitterclonemvvm.model.Auth
+import com.example.twitterclonemvvm.services.AuthAPIService
 import com.example.twitterclonemvvm.viewmodel.SignInViewModel
 
 class SignInFragment : Fragment() {
@@ -31,9 +33,12 @@ class SignInFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(SignInViewModel::class.java)
 
-
         dataBinding.signInTextView.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
+        }
+
+        dataBinding.signInButton.setOnClickListener {
+            viewModel.signIn(view,Auth(dataBinding.signInEmailEditText.text.toString(), dataBinding.signInPasswordEditText.text.toString()))
         }
 
 //        findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToFeedFragment())

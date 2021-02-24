@@ -19,11 +19,15 @@ class UserAPIService {
         .create(UserAPI::class.java)
 
     fun getUserInfo(userUID: String): Single<UserInfo> {
-        return api.getUserInfo(userUID, Util.POST_KEY)
+        return api.getUserInfo(userUID)
+    }
+
+    fun setUserInfo(userInfo: UserInfo, userUID: String): Single<UserInfo> {
+        return api.setUserInfo(userInfo, userUID)
     }
 
     fun getUserFollowings(userUID: String): Observable<JsonObject> {
-        return api.getUserFollowings(userUID, Util.POST_KEY)
+        return api.getUserFollowings(userUID)
     }
 
 }

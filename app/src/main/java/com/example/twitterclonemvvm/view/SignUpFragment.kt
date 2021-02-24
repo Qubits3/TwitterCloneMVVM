@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.twitterclonemvvm.R
 import com.example.twitterclonemvvm.databinding.FragmentSignUpBinding
+import com.example.twitterclonemvvm.model.Auth
+import com.example.twitterclonemvvm.model.UserInfo
 import com.example.twitterclonemvvm.viewmodel.SignUpViewModel
 
 class SignUpFragment : Fragment() {
@@ -32,7 +34,15 @@ class SignUpFragment : Fragment() {
         viewModel = ViewModelProviders.of(this).get(SignUpViewModel::class.java)
 
         dataBinding.signUpButton.setOnClickListener {
-            findNavController().popBackStack()
+            viewModel.signUp(
+                view,
+                Auth(
+                    dataBinding.signUpEmailEditText.text.toString(),
+                    dataBinding.signUpPasswordEditText.text.toString()
+                ), dataBinding.signUpUsernameEditText.text.toString(),
+                "",
+                ""
+            )
         }
 
     }
